@@ -1,4 +1,6 @@
-﻿using Depitest.Model;
+﻿using E_CommerceMVC.Model;
+using Microsoft.AspNetCore.Mvc;
+using System.Xml.Linq;
 
 namespace E_CommerceMVC.Services
 {
@@ -6,9 +8,11 @@ namespace E_CommerceMVC.Services
     {
 
         public HttpClient httpClient;
-        public UserService(HttpClient _httpClient)
+        public UserService()
         {
-            httpClient = _httpClient;
+            httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri("https://localhost:7145/");
+
 
         }
         public List<User> Get()
@@ -40,6 +44,14 @@ namespace E_CommerceMVC.Services
         {
             HttpResponseMessage user = httpClient.PutAsJsonAsync("/api/User", categoray).Result;
         }
+        public async Task<bool> CheckUserName(string userName, string password)
+        {
+            var user = new { UserName = userName, Password = password };
+            HttpResponseMessage response = await httpClient.PostAsJsonAsync("/api/User/Check", user);
+
+            return response.IsSuccessStatusCode;
+        }
+
     }
 
 }

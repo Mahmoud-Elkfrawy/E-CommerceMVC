@@ -1,4 +1,4 @@
-﻿using Depitest.Model;
+﻿using E_CommerceMVC.Model;
 using System.Net.Http;
 
 namespace E_CommerceMVC.Services
@@ -6,42 +6,42 @@ namespace E_CommerceMVC.Services
     public class CategoryService
     {
         public HttpClient httpClient;
-        public CategoryService(HttpClient _httpClient)
+        public CategoryService()
         {
-            httpClient = _httpClient;
+            httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("https://localhost:7145/");
 
         }
-        public List<User> Get()
+        public List<Category> Get()
         {
-            HttpResponseMessage Product = httpClient.GetAsync("/api/Category").Result;
-            return Product.Content.ReadAsAsync<List<User>>().Result;
+            HttpResponseMessage category = httpClient.GetAsync("/api/Category").Result;
+            return category.Content.ReadAsAsync<List<Category>>().Result;
         }
 
-        public User GetById(int id)
+        public Category GetById(int id)
         {
-            HttpResponseMessage Product = httpClient.GetAsync("/api/Category/" + id).Result;
-            return Product.Content.ReadAsAsync<User>().Result;
+            HttpResponseMessage category = httpClient.GetAsync("/api/Category/" + id).Result;
+            return category.Content.ReadAsAsync<Category>().Result;
         }
-        public User GetByName(string name)
+        public Category GetByName(string name)
         {
             HttpResponseMessage Product = httpClient.GetAsync("/api/Category/" + name).Result;
-            return Product.Content.ReadAsAsync<User>().Result;
+            return Product.Content.ReadAsAsync<Category>().Result;
         }
-        public void Add(User categoray)
+        public void Add(Category categoray)
         {
-            HttpResponseMessage Product = httpClient.PostAsJsonAsync("/api/Category", categoray).Result;
+            HttpResponseMessage category = httpClient.PostAsJsonAsync("/api/Category", categoray).Result;
         }
 
         public void Delete(int id)
         {
 
-            HttpResponseMessage Product = httpClient.DeleteAsync("/api/Category/" + id).Result;
+            HttpResponseMessage category = httpClient.DeleteAsync("/api/Category/" + id).Result;
         }
-        public void Update(User categoray)
+        public void Update(Category categoray)
         {
 
-            HttpResponseMessage Product = httpClient.PutAsJsonAsync("/api/Category", categoray).Result;
+            HttpResponseMessage category = httpClient.PutAsJsonAsync("/api/Category", categoray).Result;
         }
     }
 }

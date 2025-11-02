@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Depitest.Model
+namespace E_CommerceMVC.Model
 {
     public class User
     {
