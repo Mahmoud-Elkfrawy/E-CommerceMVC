@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Depitest.Model
+namespace E_CommerceMVC.Model
 {
     public class Product
     {
